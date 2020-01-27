@@ -1,24 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import Question from './components/Question';
+import ProgressBar from './components/ProgressBar';
+import NextButton from './components/NextButton';
+import questionData from './questionData';
 
 function App() {
+  const [question, setQuestion] = useState(0);
+  const [start, setStart] = useState(true);
+
+  const next = () => {
+    if (question < questionData.length) {
+      setQuestion(question + 1);
+    }
+  }
+
+  useEffect( () => {
+    console.log(`Question ${question}`);
+  });
+
+  const finish = () => {
+    setStart(false);
+  }
+
+  const reset = () => {
+    setQuestion(0);
+    setStart(true);
+  }
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ProgressBar question={question} qData={questionData.length}/>
+      <Question question={question} start={start} finish={finish}/>
+      <NextButton next={next} start={start} finish={finish} reset={reset} question={question} qData={questionData.length}/>
     </div>
   );
 }

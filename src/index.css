@@ -11,3 +11,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.App {
+  background-color: rgba(241, 104, 104, 0.397);
+  max-width: 500px;
+  text-align: center;
+}
