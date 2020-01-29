@@ -9,5 +9,5 @@ const Question = (props) => {
     </div>
   );
 }
- 
+
 export default Question;

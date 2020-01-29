@@ -3,8 +3,8 @@ import React from 'react';
 const NextButton = (props) => {
   return (
     <div>
-      {props.start ? (
-         props.question !== props.qData ? (
+      { props.quizSession ? 
+          props.question !== props.qData ? (
             <button onClick={props.next}>
               Next
             </button>
@@ -12,11 +12,7 @@ const NextButton = (props) => {
             <button onClick={props.finish}>
               Finish
             </button>
-          )
-        ) :
-          <button onClick={props.reset}>
-            Reset
-          </button>
+          ) : null
       }
     </div>
   );
