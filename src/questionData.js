@@ -10,7 +10,7 @@ export default [
   },
   {
     id: 2,
-    question: 'What is the verb for \'to discover\'?',
+    question: 'What is the verb for \'to fly\'?',
     answer_a: 'denominar',
     answer_b: 'descubrir',
     answer_c: 'denotar',
@@ -19,7 +19,7 @@ export default [
   },
   {
     id: 3,
-    question: 'What is the verb for \'to discover\'?',
+    question: 'What is the verb for \'to sing\'?',
     answer_a: 'denominar',
     answer_b: 'descubrir',
     answer_c: 'denotar',
@@ -28,7 +28,7 @@ export default [
   },
   {
     id: 4,
-    question: 'What is the verb for \'to discover\'?',
+    question: 'What is the verb for \'to destroy\'?',
     answer_a: 'denominar',
     answer_b: 'descubrir',
     answer_c: 'denotar',

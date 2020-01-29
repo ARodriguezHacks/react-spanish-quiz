@@ -8,11 +8,10 @@ import questionData from './../questionData';
 const Quiz = (props) => {
   const [question, setQuestion] = useState(1);
   const [quizSession, setQuizSession] = useState(true);
-  //const [quizComplete, setQuizComplete] = useState(false);
 
-  useEffect( () => {
-    console.log(`Question ${question}`);
-  });
+  // useEffect( () => {
+  //   console.log(`Question ${question}`);
+  // });
 
   const next = () => {
     if (question < questionData.length) {
@@ -39,6 +38,7 @@ const Quiz = (props) => {
           start={props.start}
           finish={finish}
           startQuiz={props.startQuiz}
+          qData={questionData}
           quizSession={quizSession} />
         <NextButton
           next={next} 
