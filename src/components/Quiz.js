@@ -1,14 +1,16 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import ProgressBar from './ProgressBar';
 import Question from './Question';
 import NextButton from './NextButton';
 import RestartButton from './RestartButton';
+import Answers from './Answers';
 import questionData from './../questionData';
 
 const Quiz = (props) => {
   const [question, setQuestion] = useState(1);
   const [quizSession, setQuizSession] = useState(true);
 
+  console.log(questionData);
   // useEffect( () => {
   //   console.log(`Question ${question}`);
   // });
@@ -38,6 +40,10 @@ const Quiz = (props) => {
           start={props.start}
           finish={finish}
           startQuiz={props.startQuiz}
+          qData={questionData}
+          quizSession={quizSession} />
+        <Answers 
+          question={question}
           qData={questionData}
           quizSession={quizSession} />
         <NextButton

@@ -13,9 +13,9 @@ export default [
     question: 'What is the verb for \'to fly\'?',
     answer_a: 'denominar',
     answer_b: 'descubrir',
-    answer_c: 'denotar',
+    answer_c: 'volar',
     answer_d: 'destruir',
-    correct_answer: 'b'
+    correct_answer: 'c'
   },
   {
     id: 3,
@@ -23,8 +23,8 @@ export default [
     answer_a: 'denominar',
     answer_b: 'descubrir',
     answer_c: 'denotar',
-    answer_d: 'destruir',
-    correct_answer: 'b'
+    answer_d: 'encantar',
+    correct_answer: 'd'
   },
   {
     id: 4,
