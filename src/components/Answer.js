@@ -4,16 +4,17 @@ const Answer = (props) => {
   let classes = ['answer'];
 
   if (props.selected) {
-    classes.push('selected');
+    if (props.correctAnswer === props.letter) {
+      classes.push('selected');
+    }
+    else {
+      classes.push('wrong');
+    }
   }
-  // const [currentAnswer, setCurrentAnswer] = useState('');
+  console.log(props.selected, props.correctAnswer);
 
-  // const handleClick = () => {
-  //   console.log(props.answer);
-  // };
-  //console.log(currentAnswer);
   return (
-    <button value={props.letter} className={classes.join('-')} onClick={props.handleClick}>
+    <button value={props.letter} onClick={props.handleClick} className={classes.join('-')}>
       <span className="letter">{props.letter}.</span> {props.answer}
     </button>
   );

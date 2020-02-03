@@ -1,13 +1,10 @@
 import React from 'react';
-import questionData from './../questionData';
 
 const Question = (props) => {
-
-  const currentQuestion = questionData.find( (obj) => obj.id === props.question);
  
    return (
      <div>
-        <h1>{currentQuestion.question}</h1>
+        <h1>{props.currentQuestion}</h1>
      </div>
    )
 }

@@ -7,58 +7,96 @@ import Answers from './Answers';
 import questionData from './../questionData';
 
 const Quiz = (props) => {
-  const [question, setQuestion] = useState(1);
+  const [question, setQuestion] = useState(0);
   const [quizSession, setQuizSession] = useState(true);
   const [currentAnswer, setCurrentAnswer] = useState('');
+  const [answers, setAnswers] = useState([]);
+  const [error, setError] = useState('');
 
-  console.log(questionData);
-  // useEffect( () => {
-  //   console.log(`Question ${question}`);
-  // });
+  const currentQuestion = questionData[question];
 
   const next = () => {
-    if (question < questionData.length) {
-      setQuestion(question + 1);
+    const answer = {questionId: currentQuestion.id, answer: currentAnswer};
+    console.log(answers);
+    if (!currentAnswer) {
+      setError('Please select an option');
+      return;
     }
-  }
+
+    answers.push(answer);
+    setAnswers(answers);
+    setCurrentAnswer('');
+
+    if (question + 1 < questionData.length) {
+      setQuestion(question + 1);
+      return;
+    }
+  };
 
   const finish = () => {
     setQuizSession(false);
-  }
+  };
 
   const reset = () => {
-    setQuestion(1);
+    setQuestion(0);
+    setCurrentAnswer('');
+    setAnswers([]);
     setQuizSession(true);
-  }
+  };
 
   const handleClick = e => {
     setCurrentAnswer(e.target.value);
+    setError('');
+  };
+
+  const renderError = () => {
+    if (!error) {
+      return;
+    }
+
+    return <div className="error">{error}</div>
+  };
+
+  const renderResultMark = (question, answer) => {
+    if (question.correct_answer === answer.answer) {
+      return <span>Correct</span>;
+    }
+    return <span>Failed</span>;
+  }
+
+  const renderResultsData = () => {
+    return answers.map( answer => {
+      const question = questionData.find( 
+        question => question.id === answer.questionId
+        );
+
+        return (
+          <div key={question.id}>
+            {question.question} - {renderResultMark(question, answer)}
+          </div>
+        )
+    });
   };
 
   return (
     <div>
       { quizSession ?
       <div>
-        <ProgressBar question={question} qData={questionData.length}/>
+        <ProgressBar currentQuestion={question + 1} qData={questionData.length}/>
         <Question
-          question={question} 
-          start={props.start}
-          finish={finish}
+          currentQuestion={currentQuestion.question} 
           startQuiz={props.startQuiz}
-          qData={questionData}
-          quizSession={quizSession} />
-        <Answers 
-          question={question}
-          qData={questionData}
-          quizSession={quizSession} 
+        />
+        {renderError()}
+        <Answers
+          currentQuestion={currentQuestion}
           currentAnswer={currentAnswer}
-          handleClick={handleClick}/>
+          handleClick={handleClick}
+        />
         <NextButton
           next={next} 
-          start={props.start} 
-          finish={finish} 
-          reset={reset} 
-          question={question} 
+          finish={finish}  
+          currentQuestion={question + 1} 
           qData={questionData.length}
           quizSession={quizSession}
         />
@@ -66,6 +104,10 @@ const Quiz = (props) => {
        (
         <div>
           <h2>Way to complete the quiz!</h2>
+          <h3>Quiz Results</h3>
+          <ul>
+            {renderResultsData()}
+          </ul>
           <RestartButton reset={reset}/>
         </div>
       )

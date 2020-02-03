@@ -21,3 +21,11 @@ code {
 .answer-selected {
   background-color: greenyellow;
 }
+
+.answer-wrong {
+  background-color: rgb(231, 81, 81);
+}
+
+.result-item {
+  list-style: none;
+}

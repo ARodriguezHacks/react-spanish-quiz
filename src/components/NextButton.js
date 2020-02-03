@@ -1,10 +1,11 @@
 import React from 'react';
 
 const NextButton = (props) => {
+  console.log(props.currentQuestion);
   return (
     <div>
       { props.quizSession ? 
-          props.question !== props.qData ? (
+          props.currentQuestion !== props.qData ? (
             <button onClick={props.next}>
               Next
             </button>
