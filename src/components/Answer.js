@@ -1,15 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const Answer = (props) => {
-  const [currentAnswer, setCurrentAnswer] = useState('');
+  let classes = ['answer'];
 
-  // handleClick() => {
-  //   console.log()
-  // }
-  
+  if (props.selected) {
+    classes.push('selected');
+  }
+  // const [currentAnswer, setCurrentAnswer] = useState('');
+
+  // const handleClick = () => {
+  //   console.log(props.answer);
+  // };
+  //console.log(currentAnswer);
   return (
-    <button>
-      {props.answer}
+    <button value={props.letter} className={classes.join('-')} onClick={props.handleClick}>
+      <span className="letter">{props.letter}.</span> {props.answer}
     </button>
   );
 }

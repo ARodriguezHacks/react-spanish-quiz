@@ -9,6 +9,7 @@ import questionData from './../questionData';
 const Quiz = (props) => {
   const [question, setQuestion] = useState(1);
   const [quizSession, setQuizSession] = useState(true);
+  const [currentAnswer, setCurrentAnswer] = useState('');
 
   console.log(questionData);
   // useEffect( () => {
@@ -30,6 +31,10 @@ const Quiz = (props) => {
     setQuizSession(true);
   }
 
+  const handleClick = e => {
+    setCurrentAnswer(e.target.value);
+  };
+
   return (
     <div>
       { quizSession ?
@@ -45,7 +50,9 @@ const Quiz = (props) => {
         <Answers 
           question={question}
           qData={questionData}
-          quizSession={quizSession} />
+          quizSession={quizSession} 
+          currentAnswer={currentAnswer}
+          handleClick={handleClick}/>
         <NextButton
           next={next} 
           start={props.start} 
