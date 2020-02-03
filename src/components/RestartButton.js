@@ -3,7 +3,7 @@ import React from 'react';
 const RestartButton = (props) => {
   return (
     <div>
-      <button onClick={props.reset}>Restart</button>
+      <button onClick={props.reset} className="restart-btn">Restart</button>
     </div>
   );
 }

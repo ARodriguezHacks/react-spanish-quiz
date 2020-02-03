@@ -6,11 +6,11 @@ const NextButton = (props) => {
     <div>
       { props.quizSession ? 
           props.currentQuestion !== props.qData ? (
-            <button onClick={props.next}>
+            <button onClick={props.next} className="next-btn">
               Next
             </button>
           ) : (
-            <button onClick={props.finish}>
+            <button onClick={props.finish} className="finish-btn">
               Finish
             </button>
           ) : null

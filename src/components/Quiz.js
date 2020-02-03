@@ -34,6 +34,10 @@ const Quiz = (props) => {
   };
 
   const finish = () => {
+    if (!currentAnswer) {
+      setError('Please select and option');
+      return;
+    }
     setQuizSession(false);
   };
 
