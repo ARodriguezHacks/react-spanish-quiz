@@ -2,8 +2,6 @@ import React from 'react';
 import Answer from './Answer';
 
 const Answers = (props) => {
-  //const correctAnswer = props.currentQuestion.correct_answer;
-  //console.log(correctAnswer);
   
   return (
     <div className="container">

@@ -76,9 +76,9 @@ const Quiz = (props) => {
 
   const renderResultMark = (question, answer) => {
     if (question.correct_answer === answer.answer) {
-      return <span>Correct</span>;
+      return <span className="correct">Correct</span>;
     }
-    return <span>Failed</span>;
+    return <span className="failed">Failed</span>;
   }
 
   const renderResultsData = () => {
@@ -88,7 +88,7 @@ const Quiz = (props) => {
         );
 
         return (
-          <div key={question.id}>
+          <div key={question.id} className="result-item">
             {question.question} - {renderResultMark(question, answer)}
           </div>
         )
@@ -104,7 +104,7 @@ const Quiz = (props) => {
           currentQuestion={currentQuestion.question} 
           startQuiz={props.startQuiz}
         />
-        {renderError()}
+        <span className="render-error">{renderError()}</span>
         <Answers
           currentQuestion={currentQuestion}
           correctAnswer={correctAnswer}
@@ -115,7 +115,7 @@ const Quiz = (props) => {
         />
         <NextButton
           next={next} 
-          finish={finish}  
+          finish={finish}
           currentQuestion={question + 1} 
           qData={questionData.length}
           quizSession={quizSession}

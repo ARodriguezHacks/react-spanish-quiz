@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=El+Messiri&display=swap');
 
+@keyframes correct {
+  from {background-color: #fff}
+  to {background-color: greenyellow}
+}
+
 html, body {
   margin: 0px;
   padding: 0px;
@@ -18,14 +23,20 @@ code {
 
 .App {
   background-color: gainsboro;
+  box-sizing: border-box;
   max-width: 1000px;
-  height: 90%;
+  min-height: 90vh;
   margin: 0 auto;
   text-align: center;
 }
 
+ul {
+  margin: 0px;
+  padding: 0px;
+}
+
 button {
-  width: 90%;
+  width: 80%;
   font-size: 1.5rem;
   padding: 5% 0;
   margin: 2% 0;
@@ -38,6 +49,15 @@ button:hover {
 
 button:focus {outline:0;}
 
+.letter {
+  font-size: 1.5rem;
+  margin-right: 0.5rem;
+}
+
+.render-error {
+  color: rgb(231, 81, 81);
+}
+
 /*---- Landing/App -----*/
 
 .landing {
@@ -48,14 +68,25 @@ button:focus {outline:0;}
   font-size: 3rem;
 }
 
-.start-btn, .next-btn, .restart-btn {
+.start-btn, 
+.next-btn, 
+.restart-btn {
   background-color: skyblue;
+}
+
+.start-btn:hover,
+.next-btn:hover,
+.restart-btn:hover {
+  background-color: #1e85ae;
 }
 
 .finish-btn {
   background-color: gold;
 }
 
+.finish-btn:hover {
+  background-color: #e6c300;
+}
 
 /*--- Answers ---*/
 .answer-selected {
@@ -66,36 +97,56 @@ button:focus {outline:0;}
   background-color: rgb(231, 81, 81);
 }
 
-.answer-hidden {
-  background-color: greenyellow;
-  visibility: hidden;
+.answer-correct {
+  background-color: #fff;
+  animation-name: correct;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
 }
 
 .result-item {
-  list-style: none;
+  margin: 2rem 0;
 }
 
-@media (min-width: 768px) {
+.failed{
+  color: greenyellow;
+  font-weight: 600;
+}
 
-  .App {
-    height: 90vh;
-  }
+.correct {
+  color: rgb(231, 81, 81);
+  font-weight: 600;
+}
+
+
+@media (min-width: 768px) {
   
   button {
-    width: 90%;
+    width: 70%;
     font-size: 1rem;
-    margin: 1% 0; 
+    margin: 2% 0; 
     border-radius: 25px;
   }
 
-  button.start-btn, button.next-btn, button.finish-btn, button.restart-btn {
+  button.start-btn, 
+  button.next-btn, 
+  button.finish-btn, 
+  button.restart-btn {
     width: 30%;
     padding: 2% 0;
   }
 
+  .letter {
+    font-size: 1.5rem;
+  }
+
   .container {
     width: 100%;
-    float: left;
+    margin-top: 2rem;
+  }
+
+  .container::after {
+    clear: both;
   }
 
   .column {
