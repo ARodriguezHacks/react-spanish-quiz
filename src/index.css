@@ -36,6 +36,8 @@ button:hover {
   cursor: pointer;
 }
 
+button:focus {outline:0;}
+
 /*---- Landing/App -----*/
 
 .landing {
@@ -62,6 +64,11 @@ button:hover {
 
 .answer-wrong {
   background-color: rgb(231, 81, 81);
+}
+
+.answer-hidden {
+  background-color: greenyellow;
+  visibility: hidden;
 }
 
 .result-item {

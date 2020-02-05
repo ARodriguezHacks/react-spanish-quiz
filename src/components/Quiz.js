@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import ProgressBar from './ProgressBar';
 import Question from './Question';
 import NextButton from './NextButton';
@@ -10,12 +10,17 @@ const Quiz = (props) => {
   const [question, setQuestion] = useState(0);
   const [quizSession, setQuizSession] = useState(true);
   const [currentAnswer, setCurrentAnswer] = useState('');
+  const [showCorrectAnswer, setShowCorrectAnswer] = useState(false);
   const [answers, setAnswers] = useState([]);
   const [error, setError] = useState('');
+  const [disableClick, setDisableClick] = useState(false);
 
   const currentQuestion = questionData[question];
+  const correctAnswer = questionData[question].correct_answer;
 
   const next = () => {
+    setDisableClick(false);
+    setShowCorrectAnswer(false);
     const answer = {questionId: currentQuestion.id, answer: currentAnswer};
     console.log(answers);
     if (!currentAnswer) {
@@ -38,6 +43,7 @@ const Quiz = (props) => {
       setError('Please select and option');
       return;
     }
+    setDisableClick(false);
     setQuizSession(false);
   };
 
@@ -46,12 +52,19 @@ const Quiz = (props) => {
     setCurrentAnswer('');
     setAnswers([]);
     setQuizSession(true);
+    setShowCorrectAnswer(false);
   };
 
   const handleClick = e => {
     setCurrentAnswer(e.target.value);
+    setDisableClick(true);
+    setShowCorrectAnswer(true);
     setError('');
   };
+
+  useEffect( () => {
+    console.log(`You clicked ${currentAnswer}`);
+  });
 
   const renderError = () => {
     if (!error) {
@@ -94,8 +107,11 @@ const Quiz = (props) => {
         {renderError()}
         <Answers
           currentQuestion={currentQuestion}
+          correctAnswer={correctAnswer}
           currentAnswer={currentAnswer}
+          showCorrectAnswer={showCorrectAnswer}
           handleClick={handleClick}
+          disableClick={disableClick}
         />
         <NextButton
           next={next} 

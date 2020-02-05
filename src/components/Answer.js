@@ -2,7 +2,7 @@ import React from 'react';
 
 const Answer = (props) => {
   let classes = ['answer'];
-
+  //console.log(props.selected);
   if (props.selected) {
     if (props.correctAnswer === props.letter) {
       classes.push('selected');
@@ -10,11 +10,19 @@ const Answer = (props) => {
     else {
       classes.push('wrong');
     }
+  } 
+  else if (props.showCorrectAnswer) {
+    if (props.correctAnswer === props.letter) {
+      classes.push('selected');
+    }
   }
-  console.log(props.selected, props.correctAnswer);
-
+  
   return (
-    <button value={props.letter} onClick={props.handleClick} className={classes.join('-')}>
+    <button 
+      value={props.letter}
+      onClick={ !props.disableClick ? props.handleClick : null} 
+      className={classes.join('-')}
+    >
       <span className="letter">{props.letter}.</span> {props.answer}
     </button>
   );
