@@ -4,9 +4,11 @@ import Question from './Question';
 import NextButton from './NextButton';
 import RestartButton from './RestartButton';
 import Answers from './Answers';
-import questionData from './../questionData';
+import questionData from './../questionData'; //original questiondata. Don't alter.
+import initialData from './randomQuestions.js';
 
 const Quiz = (props) => {
+  const [questionArray, setQuestionArray] = useState(initialData); 
   const [question, setQuestion] = useState(0);
   const [quizSession, setQuizSession] = useState(true);
   const [currentAnswer, setCurrentAnswer] = useState('');
@@ -15,8 +17,35 @@ const Quiz = (props) => {
   const [error, setError] = useState('');
   const [disableClick, setDisableClick] = useState(false);
 
-  const currentQuestion = questionData[question];
-  const correctAnswer = questionData[question].correct_answer;
+  //let qData = newData;
+  //console.log(qData);
+  //console.log(questionData);
+  //let qData = initialData;
+  const currentQuestion = questionArray[question];
+  const correctAnswer = questionArray[question].correct_answer;
+
+  const dataArray = () => {
+    const questionsDuplicate = [...questionData];
+
+    const newData = [];
+
+    while (newData.length < 10) {
+      createRandomArray();
+    }
+
+    function getRandomInt(max) {
+      return Math.ceil(Math.random() * Math.ceil(max));
+    }
+
+    function createRandomArray() {
+      let dataLength = questionsDuplicate.length;
+      const index = getRandomInt(dataLength);
+      const output = questionsDuplicate.splice(index - 1, 1);
+      newData.push(...output);
+    }
+
+    return newData;
+  }
 
   const next = () => {
     setDisableClick(false);
@@ -32,7 +61,7 @@ const Quiz = (props) => {
     setAnswers(answers);
     setCurrentAnswer('');
 
-    if (question + 1 < questionData.length) {
+    if (question + 1 < questionArray.length) {
       setQuestion(question + 1);
       return;
     }
@@ -48,6 +77,8 @@ const Quiz = (props) => {
   };
 
   const reset = () => {
+    const newList = dataArray();
+    setQuestionArray(newList);
     setQuestion(0);
     setCurrentAnswer('');
     setAnswers([]);
@@ -83,13 +114,13 @@ const Quiz = (props) => {
 
   const renderResultsData = () => {
     return answers.map( answer => {
-      const question = questionData.find( 
+      const question = questionArray.find( 
         question => question.id === answer.questionId
         );
 
         return (
           <div key={question.id} className="result-item">
-           {question.id}. {question.question} - {renderResultMark(question, answer)}
+            {question.question} - {renderResultMark(question, answer)}
           </div>
         )
     });
@@ -99,7 +130,7 @@ const Quiz = (props) => {
     <div>
       { quizSession ?
       <div>
-        <ProgressBar currentQuestion={question + 1} qData={questionData.length}/>
+        <ProgressBar currentQuestion={question + 1} qData={questionArray.length}/>
         <Question
           currentQuestion={currentQuestion.question} 
           startQuiz={props.startQuiz}
@@ -122,7 +153,7 @@ const Quiz = (props) => {
           next={next} 
           finish={finish}
           currentQuestion={question + 1} 
-          qData={questionData.length}
+          qData={questionArray.length}
           quizSession={quizSession}
         />
       </div> :
