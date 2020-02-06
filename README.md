@@ -6,7 +6,7 @@ Questions are randomized at the beginning of each session, and users know immedi
 
 ![SpeedySpanish Landing Page](src/assets/speedyspanish-img2-min.png)
 
-Visit this project at  
+Visit this project at https://speedyspanishquiz.netlify.com/
 
 ## Technologies
 
