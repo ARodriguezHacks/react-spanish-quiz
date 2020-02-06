@@ -159,7 +159,7 @@ const Quiz = (props) => {
       </div> :
        (
         <div>
-          <h2>Way to complete the quiz!</h2>
+          <h2>¡Felicidades! Way to complete the quiz!</h2>
           <div>
             <h3 className="quiz-results">Quiz Results</h3>
             <RestartButton reset={reset}/>

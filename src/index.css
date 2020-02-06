@@ -78,7 +78,7 @@ button:focus {
 /*---- Landing/App -----*/
 
 .landing h1 {
-  font-size: 3rem;
+  font-size: 2.5rem;
 }
 
 button.restart-btn {
@@ -162,6 +162,10 @@ button.restart-btn {
   
   .App {
     margin: 0 2rem;
+  }
+
+  .landing h1 {
+    font-size: 3rem;
   }
 
   button {
