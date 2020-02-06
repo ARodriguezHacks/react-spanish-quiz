@@ -89,7 +89,7 @@ const Quiz = (props) => {
 
         return (
           <div key={question.id} className="result-item">
-            {question.question} - {renderResultMark(question, answer)}
+           {question.id}. {question.question} - {renderResultMark(question, answer)}
           </div>
         )
     });
@@ -104,7 +104,12 @@ const Quiz = (props) => {
           currentQuestion={currentQuestion.question} 
           startQuiz={props.startQuiz}
         />
-        <span className="render-error">{renderError()}</span>
+        <div className="render-error-container">
+          { error ? 
+          <span className="render-error">{renderError()}</span> : 
+          null
+          }
+        </div>
         <Answers
           currentQuestion={currentQuestion}
           correctAnswer={correctAnswer}
@@ -124,11 +129,13 @@ const Quiz = (props) => {
        (
         <div>
           <h2>Way to complete the quiz!</h2>
-          <h3>Quiz Results</h3>
+          <div>
+            <h3 className="quiz-results">Quiz Results</h3>
+            <RestartButton reset={reset}/>
+          </div>
           <ul>
             {renderResultsData()}
           </ul>
-          <RestartButton reset={reset}/>
         </div>
       )
       }

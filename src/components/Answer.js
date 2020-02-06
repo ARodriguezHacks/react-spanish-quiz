@@ -15,6 +15,9 @@ const Answer = (props) => {
     if (props.correctAnswer === props.letter) {
       classes.push('correct');
     }
+    else {
+      classes.push('not-selected');
+    }
   }
 
   return (
